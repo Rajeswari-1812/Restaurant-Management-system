@@ -1,0 +1,409 @@
+CREATE DATABASE Restaurant_Management;
+USE Restaurant_Management;
+CREATE TABLE Customers (
+  Customer_ID INT PRIMARY KEY,
+  C_Name VARCHAR(50),
+  Email VARCHAR(50),
+  Phone VARCHAR(13),
+  City VARCHAR(30)
+);
+
+CREATE TABLE MenuItems (
+  Item_ID INT PRIMARY KEY,
+  Item_Name VARCHAR(50),
+  Category VARCHAR(30),
+  Price DECIMAL(10,2)
+);
+
+CREATE TABLE Tables (
+  Table_ID INT PRIMARY KEY,
+  Table_Number INT,
+  Capacity INT,
+  Status VARCHAR(20)
+);
+
+CREATE TABLE Orders (
+  Order_ID INT PRIMARY KEY,
+  Customer_ID INT,
+  Table_ID INT,
+  Order_Date DATE,
+  Total_Amount DECIMAL(10,2),
+  FOREIGN KEY (Customer_ID) REFERENCES Customers(Customer_ID),
+  FOREIGN KEY (Table_ID) REFERENCES Tables(Table_ID)
+);
+
+CREATE TABLE Order_Details (
+  OrderDetail_ID INT PRIMARY KEY,
+  Order_ID INT,
+  Item_ID INT,
+  Quantity INT,
+  FOREIGN KEY (Order_ID) REFERENCES Orders(Order_ID),
+  FOREIGN KEY (Item_ID) REFERENCES MenuItems(Item_ID)
+);
+
+CREATE TABLE Employees (
+  Emp_ID INT PRIMARY KEY,
+  Emp_Name VARCHAR(50),
+  Role VARCHAR(50),
+  Join_Date DATE,
+  Salary DECIMAL(10,2)
+);
+
+desc employees;
+desc customers;
+desc menuitems;
+desc order_details;
+desc orders;
+-- INSERT DATA
+
+INSERT INTO Customers VALUES
+(1,'Arun Kumar','arun@gmail.com','9876543210','Chennai'),
+(2,'Priya','priya@gmail.com','9786543211','Coimbatore'),
+(3,'Ravi','ravi@gmail.com','9687543212','Madurai'),
+(4,'Divya','divya@gmail.com','9887543213','Salem'),
+(5,'Karthik','karthik@gmail.com','9987543214','Trichy'),
+(6,'Suresh','suresh@gmail.com','9876543215','Erode'),
+(7,'Meena','meena@gmail.com','9766543216','Chennai'),
+(8,'Rahul','rahul@gmail.com','9656543217','Tirunelveli'),
+(9,'Anu','anu@gmail.com','9546543218','Madurai'),
+(10,'Vijay','vijay@gmail.com','9436543219','Coimbatore'),
+(11,'Kavin','kavin@gmail.com','9326543220','Chennai'),
+(12,'Shreya','shreya@gmail.com','9216543221','Salem'),
+(13,'Gokul','gokul@gmail.com','9116543222','Trichy'),
+(14,'Lavanya','lavanya@gmail.com','9016543223','Chennai'),
+(15,'Mani','mani@gmail.com','8916543224','Erode'),
+(16,'Sneha','sneha@gmail.com','8816543225','Madurai'),
+(17,'Hari','hari@gmail.com','8716543226','Chennai'),
+(18,'Swathi','swathi@gmail.com','8616543227','Tirupur'),
+(19,'Nithin','nithin@gmail.com','8516543228','Trichy'),
+(20,'Lakshmi','lakshmi@gmail.com','8416543229','Chennai'),
+(21,'Rajesh','rajesh@gmail.com','8316543230','Salem'),
+(22,'Pooja','pooja@gmail.com','8216543231','Madurai'),
+(23,'Sarath','sarath@gmail.com','8116543232','Chennai'),
+(24,'Nisha','nisha@gmail.com','8016543233','Coimbatore'),
+(25,'Rohit','rohit@gmail.com','7916543234','Madurai'),
+(26,'Kaviya','kaviya@gmail.com','7816543235','Trichy'),
+(27,'Vikram','vikram@gmail.com','7716543236','Salem'),
+(28,'Deepa','deepa@gmail.com','7616543237','Erode'),
+(29,'Sanjay','sanjay@gmail.com','7516543238','Chennai'),
+(30,'Harini','harini@gmail.com','7416543239','Madurai'),
+(31,'Mohan','mohan@gmail.com','7316543240','Trichy'),
+(32,'Anitha','anitha@gmail.com','7216543241','Chennai'),
+(33,'Kiran','kiran@gmail.com','7116543242','Coimbatore'),
+(34,'Rithika','rithika@gmail.com','7016543243','Madurai'),
+(35,'Balaji','balaji@gmail.com','6916543244','Erode'),
+(36,'Gayathri','gayathri@gmail.com','6816543245','Chennai'),
+(37,'Siva','siva@gmail.com','6716543246','Tirupur'),
+(38,'Preethi','preethi@gmail.com','6616543247','Chennai'),
+(39,'Vignesh','vignesh@gmail.com','6516543248','Salem'),
+(40,'Rani','rani@gmail.com','6416543249','Coimbatore'),
+(41,'Dinesh','dinesh@gmail.com','6316543250','Madurai'),
+(42,'Bhavani','bhavani@gmail.com','6216543251','Trichy'),
+(43,'Raja','raja@gmail.com','6116543252','Chennai'),
+(44,'Malar','malar@gmail.com','6016543253','Erode'),
+(45,'Koushik','koushik@gmail.com','5916543254','Coimbatore'),
+(46,'Aishwarya','aishwarya@gmail.com','5816543255','Chennai'),
+(47,'Jeeva','jeeva@gmail.com','5716543256','Madurai'),
+(48,'Bhuvana','bhuvana@gmail.com','5616543257','Salem'),
+(49,'Surya','surya@gmail.com','5516543258','Trichy'),
+(50,'Keerthana','keerthana@gmail.com','5416543259','Chennai');
+-- MENU ITEMS
+INSERT INTO MenuItems VALUES
+(1,'Veg Biryani','Main Course',180),
+(2,'Chicken Biryani','Main Course',220),
+(3,'Paneer Butter Masala','Main Course',200),
+(4,'Naan','Side Dish',40),
+(5,'Butter Chicken','Main Course',240),
+(6,'Lassi','Beverage',60),
+(7,'Gulab Jamun','Dessert',80),
+(8,'Idli','Breakfast',50),
+(9,'Dosa','Breakfast',60),
+(10,'Pongal','Breakfast',70),
+(11,'Fried Rice','Main Course',150),
+(12,'Manchurian','Side Dish',100),
+(13,'Roti','Side Dish',30),
+(14,'Curd Rice','Main Course',120),
+(15,'Ice Cream','Dessert',100),
+(16,'Coffee','Beverage',40),
+(17,'Tea','Beverage',30),
+(18,'Soup','Starter',70),
+(19,'Spring Roll','Starter',90),
+(20,'Mutton Biryani','Main Course',260),
+(21,'Fish Fry','Main Course',200),
+(22,'Egg Curry','Main Course',150),
+(23,'Prawn Curry','Main Course',270),
+(24,'Salad','Starter',60),
+(25,'Juice','Beverage',80);
+-- EMPLOYEES
+INSERT INTO Employees VALUES
+(1,'Arun','Manager','2023-01-15',50000),
+(2,'Meena','Chef','2023-02-10',40000),
+(3,'Ravi','Waiter','2023-03-12',20000),
+(4,'Suresh','Waiter','2023-04-15',20000),
+(5,'Anu','Receptionist','2023-05-01',25000),
+(6,'Vijay','Cashier','2023-06-10',22000),
+(7,'Kavin','Cleaner','2023-07-08',15000),
+(8,'Divya','Chef','2023-08-09',38000),
+(9,'Sarath','Waiter','2023-09-10',19000),
+(10,'Sneha','Manager','2023-10-01',52000),
+(11,'Hari','Delivery Boy','2023-09-12',17000),
+(12,'Pooja','Receptionist','2023-07-11',23000),
+(13,'Rohit','Cashier','2023-03-16',21000),
+(14,'Lavanya','Chef','2023-04-18',39000),
+(15,'Deepa','Waiter','2023-05-20',20000);
+-- TABLES 
+
+INSERT INTO Tables VALUES
+(1,101,4,'Available'),
+(2,102,2,'Occupied'),
+(3,103,6,'Reserved'),
+(4,104,4,'Available'),
+(5,105,2,'Available'),
+(6,106,4,'Available'),
+(7,107,2,'Occupied'),
+(8,108,6,'Available'),
+(9,109,4,'Reserved'),
+(10,110,2,'Available');
+-- 25 ORDERS
+INSERT INTO Orders VALUES
+(1,1,1,'2025-10-01',400),
+(2,2,2,'2025-10-02',220),
+(3,3,3,'2025-10-03',260),
+(4,4,4,'2025-10-04',340),
+(5,5,5,'2025-10-05',420),
+(6,6,6,'2025-10-06',180),
+(7,7,7,'2025-10-07',250),
+(8,8,8,'2025-10-08',200),
+(9,9,9,'2025-10-09',320),
+(10,10,10,'2025-10-09',150),
+(11,11,1,'2025-10-10',280),
+(12,12,2,'2025-10-10',310),
+(13,13,3,'2025-10-10',370),
+(14,14,4,'2025-10-10',200),
+(15,15,5,'2025-10-10',410),
+(16,16,6,'2025-10-10',240),
+(17,17,7,'2025-10-10',360),
+(18,18,8,'2025-10-10',290),
+(19,19,9,'2025-10-10',190),
+(20,20,10,'2025-10-10',430),
+(21,21,1,'2025-10-10',380),
+(22,22,2,'2025-10-10',300),
+(23,23,3,'2025-10-10',270),
+(24,24,4,'2025-10-10',330),
+(25,25,5,'2025-10-10',410);
+
+INSERT INTO Order_Details (OrderDetail_ID, Order_ID, Item_ID, Quantity) VALUES
+(1, 1, 1, 2),     -- Order 1: Veg Biryani x2
+(2, 1, 4, 4),     -- Order 1: Naan x4
+(3, 2, 2, 1),     -- Order 2: Chicken Biryani x1
+(4, 3, 3, 2),     -- Order 3: Paneer Butter Masala x2
+(5, 4, 5, 1),     -- Order 4: Butter Chicken x1
+(6, 5, 11, 2),    -- Order 5: Fried Rice x2
+(7, 6, 8, 3),     -- Order 6: Idli x3
+(8, 7, 9, 2),     -- Order 7: Dosa x2
+(9, 8, 15, 2),    -- Order 8: Ice Cream x2
+(10, 9, 21, 1),   -- Order 9: Fish Fry x1
+(11, 10, 6, 3),   -- Order 10: Lassi x3
+(12, 11, 12, 1),  -- Order 11: Manchurian x1
+(13, 12, 17, 2),  -- Order 12: Tea x2
+(14, 13, 18, 1),  -- Order 13: Soup x1
+(15, 14, 13, 3),  -- Order 14: Roti x3
+(16, 15, 20, 2),  -- Order 15: Mutton Biryani x2
+(17, 16, 23, 1),  -- Order 16: Prawn Curry x1
+(18, 17, 24, 2),  -- Order 17: Salad x2
+(19, 18, 19, 1),  -- Order 18: Spring Roll x1
+(20, 19, 22, 2);  -- Order 19: Egg Curry x2
+select * from Employees;
+select  * from customers;
+select * from MenuItems;
+select * from Tables ;
+select * from Orders ;
+select * from Order_Details;
+
+show tables;
+SELECT 
+UPPER(C_Name) AS CustomerName, 
+LEFT(City,3) AS CityCode,
+COUNT(o.Order_ID) AS OrdersPlaced
+FROM Customers c
+LEFT JOIN Orders o ON c.Customer_ID = o.Customer_ID
+GROUP BY C_Name, City
+ORDER BY OrdersPlaced DESC;
+
+SELECT Emp_Name, Role, DATEDIFF(CURDATE(), Join_Date) AS DaysWorked
+FROM Employees
+ORDER BY DaysWorked DESC;
+
+SELECT * 
+FROM Customers
+WHERE C_Name LIKE 'R%';
+
+SELECT * 
+FROM MenuItems
+WHERE Item_Name LIKE '%a';
+
+SELECT * 
+FROM Customers
+WHERE City LIKE '%pur%';
+
+SELECT * 
+FROM Employees
+WHERE Emp_Name LIKE '_a%';
+
+SELECT * 
+FROM MenuItems
+WHERE Category LIKE '%Starter%' 
+   OR Item_Name LIKE '%Chicken%';
+
+SELECT C_Name, Email 
+FROM Customers
+WHERE Email LIKE '%gmail.com%';
+
+-- List Employees by Role:
+SELECT Role, COUNT(*) AS No_of_Employees, AVG(Salary) AS Avg_Salary
+FROM Employees
+GROUP BY Role;
+-- Check Available Tables
+SELECT Table_Number, Capacity
+FROM Tables
+WHERE Status = 'Available';
+-- Get Most Expensive Menu Item:
+SELECT Item_Name, Price
+FROM MenuItems
+ORDER BY Price DESC
+LIMIT 1;
+-- View Customer Orders:
+SELECT C.C_Name, O.Order_ID, O.Order_Date, O.Total_Amount
+FROM Customers C
+JOIN Orders O ON C.Customer_ID = O.Customer_ID;
+-- Find Total Sales by City
+SELECT C.City, SUM(O.Total_Amount) AS Total_Sales
+FROM Customers C
+JOIN Orders O ON C.Customer_ID = O.Customer_ID
+GROUP BY C.City;
+
+-- List all customers from Chennai
+SELECT * FROM Customers WHERE City = 'Chennai';
+
+-- Find total number of customers in each city
+SELECT City, COUNT(*) AS Total_Customers
+FROM Customers
+GROUP BY City
+ORDER BY Total_Customers DESC;
+
+-- Find customers whose name starts with ‘A’
+SELECT * FROM Customers
+WHERE C_Name LIKE 'A%';
+
+-- Count customers from Madurai
+SELECT COUNT(*) AS Madurai_Customers
+FROM Customers
+WHERE City = 'Madurai';
+
+--  Show all Main Course items priced above ₹200
+SELECT Item_Name, Price
+FROM MenuItems
+WHERE Category = 'Main Course' AND Price > 200;
+
+-- Find average price of all menu items
+SELECT AVG(Price) AS Avg_Price FROM MenuItems;
+
+-- Count how many items are in each category
+SELECT Category, COUNT(*) AS No_of_Items
+FROM MenuItems
+GROUP BY Category;
+
+-- Show the most expensive and cheapest dish
+SELECT Item_Name, Price
+FROM MenuItems
+WHERE Price = (SELECT MAX(Price) FROM MenuItems)
+   OR Price = (SELECT MIN(Price) FROM MenuItems);
+
+-- Show all available tables
+SELECT Table_Number, Capacity
+FROM Tables
+WHERE Status = 'Available';
+
+--  Count tables by status
+SELECT Status, COUNT(*) AS Total_Tables
+FROM Tables
+GROUP BY Status;
+
+-- List all orders placed on 2025-10-10
+SELECT * FROM Orders
+WHERE Order_Date = '2025-10-10';
+
+-- Find total sales amount
+SELECT SUM(Total_Amount) AS Total_Sales
+FROM Orders;
+
+-- Find top 5 highest order amounts
+SELECT Order_ID, Total_Amount
+FROM Orders
+ORDER BY Total_Amount DESC
+LIMIT 5;
+
+--  Show orders with total amount between ₹200 and ₹400
+SELECT * FROM Orders
+WHERE Total_Amount BETWEEN 200 AND 400;
+
+-- Join customer and order details
+SELECT C.C_Name, C.City, O.Order_ID, O.Total_Amount
+FROM Customers C
+JOIN Orders O ON C.Customer_ID = O.Customer_ID;
+
+-- Find which customer ordered the highest total
+SELECT C.C_Name, O.Total_Amount
+FROM Customers C
+JOIN Orders O ON C.Customer_ID = O.Customer_ID
+ORDER BY O.Total_Amount DESC
+LIMIT 1;
+
+
+-- List all order details with item names
+SELECT OD.Order_ID, M.Item_Name, OD.Quantity
+FROM Order_Details OD
+JOIN MenuItems M ON OD.Item_ID = M.Item_ID;
+
+-- Find total quantity sold per menu item
+SELECT M.Item_Name, SUM(OD.Quantity) AS Total_Quantity_Sold
+FROM Order_Details OD
+JOIN MenuItems M ON OD.Item_ID = M.Item_ID
+GROUP BY M.Item_Name
+ORDER BY Total_Quantity_Sold DESC;
+
+-- Find number of unique items sold
+SELECT COUNT(DISTINCT Item_ID) AS Unique_Items_Sold
+FROM Order_Details;
+
+SELECT c.C_Name, o.Order_ID, o.Order_Date, m.Item_Name, m.Price
+FROM Customers c
+JOIN Orders o ON c.Customer_ID = o.Customer_ID
+JOIN Order_Details d ON o.Order_ID = d.Order_ID
+JOIN MenuItems m ON d.Item_ID = m.Item_ID;
+
+CREATE VIEW CustomerOrders AS
+SELECT c.C_Name, COUNT(o.Order_ID) AS Total_Orders, SUM(o.Total_Amount) AS Total_Spent
+FROM Customers c
+JOIN Orders o ON c.Customer_ID = o.Customer_ID
+GROUP BY c.C_Name;
+
+SELECT * FROM CustomerOrders ORDER BY Total_Spent DESC;
+
+
+SELECT C_Name, City FROM Customers
+WHERE Customer_ID IN (
+  SELECT Customer_ID FROM Orders WHERE Total_Amount > (SELECT AVG(Total_Amount) FROM Orders)
+);
+DELIMITER $$
+CREATE TRIGGER UpdateTableStatus
+AFTER INSERT ON Orders
+FOR EACH ROW
+BEGIN
+  UPDATE Tables
+  SET Status = 'Occupied'
+  WHERE Table_ID = NEW.Table_ID;
+END$$
+DELIMITER ;
+
+DELIMITER $$
